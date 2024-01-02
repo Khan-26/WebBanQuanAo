@@ -1,0 +1,125 @@
+﻿
+@model DoAnBanHang.Models.SanPham
+@using DoAnBanHang.Models;
+@using System;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Size_choosen = "S";
+    
+    var Size = ViewBag.query;
+    Session["a"] = "M";
+}
+<head>
+    <script src="https://kit.fontawesome.com/200d9ab894.js" crossorigin="anonymous"></script>
+    @*<script src="~/Scripts/app.js"></script>*@
+</head>
+@*@using (Html.BeginForm("Index", "Detail", new { MaSP = Model.ID_SP, Size = Model.KichCo }))
+{*@
+<form action="/Cart/ThemSanPhamVaoGio" method="post">
+    <div class="container-fluid">
+        <input type="hidden" value="@Model.ID_SP" name="ID" />
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="main-img">
+                    <img class="detail-img" src="@Url.Content(Model.Image)">
+
+                </div>
+            </div>
+            <div class="col-md-6 detail-information">
+                @*Tên sản phẩm*@
+
+                <p class="detail-name">
+                    @Html.DisplayFor(model => model.TenSP)
+                    @*@item.SanPham.TenSP*@
+                </p>
+                <hr />
+                @*Gía tiền sản phẩm*@
+                <p class="detail-price">
+                    @String.Format("{0:0,0}",@Model.DonGia)
+                    @*@item.SanPham.DonGia*@
+                </p>
+                <hr />
+                @*Kích cỡ của sản phẩm*@
+
+                <ul class="table-size" id="size_check">
+                    @foreach (var item in ViewBag.query)
+                    {
+                        @*class= "size-choose"*@
+                        <li class="size">
+
+                            @*@Html.RadioButtonFor(item.Size,Model.KichCo,false,new { Size = item.Size})*@
+                            <label class="size-des" name="size">
+                                Size @item.Size
+                                <input id="sizesp" class="size-choose " formmethod="post" type="radio" name="size" value="@item.ID_Size" />
+                            </label>
+
+
+
+                        </li>
+
+                    }
+                </ul>
+
+
+                <hr />
+                @*Button thêm và thanh toán*@
+                <ul class="table-btn">
+                    @*<li><a class="btn-add" href="@Url.Action("ThemSanPhamVaoGio", "Cart", new { MaSP = Model.ID_SP, Size = Size_choosen })">THÊM VÀO GIỎ</a></li>*@
+                    @*<li><button type="submit" class="btn-add">THÊM VÀO GIỎ</button></li>*@
+
+                    @*loz hoaf lamf*@
+                    <li>
+
+                        @*<input type="hidden" value="@Model.ID_SP" name="ID" />
+                        <input type="hidden" name="sizesp" value="" />*@
+                        <input class="btn-add" type="submit" id="btn" name="Size_chosen" value="THÊM VÀO GIỎ"/>
+                        @*<script>
+                                function setSize() {
+                                    var sizeCho = document.getElementsByTagName('size');
+                                    var result = document.getElementsByTagName('sizesp');
+                                    result = sizeCho;
+                                    console.log(result);
+                                }
+
+
+                            </script>*@
+
+                    </li>
+
+                    @*<li><a class="btn-buy" href="">MUA NGAY</a></li>*@
+                    @*<li>
+                            <form action="/Cart/ThanhToan" method="post">
+                                <input type="hidden" value="@Model.ID_SP" />
+
+                                <input type="hidden" name="sizesp" />
+                                <input class="btn-buy" type="submit" value="Mua Ngay" />
+                            </form>
+                        </li>*@
+                </ul>
+                @*@Url.Action("ThemSanPhamVaoGio", "Cart", new { MaSP = Model.ID_SP, Size = Size_choosen })*@
+
+                <hr />
+
+
+                @*Chi tiết của sản phẩm*@
+                <p class="detail-title">Chi tiết sản phẩm</p>
+                <div>
+                    <ul class="detail-des">
+                        <li><i class="fas fa-circle"></i>Chất liệu: 100% Cotton</li>
+                        <li><i class="fas fa-circle"></i>Regular fit</li>
+                        <li><i class="fas fa-circle"></i>Vải 2 chiều</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+   
+
+
+
+   
+
